@@ -1,7 +1,7 @@
 "use stict";
 //Data =========================================================================================================================
 var hours = ["6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm"];
-
+var hoursScaling = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
 //Functionality =================================================================================================================
 //Constructor for store sales data
 function Location (name, minCustomers, maxCustomers, avgCookies) {
@@ -17,7 +17,7 @@ function Location (name, minCustomers, maxCustomers, avgCookies) {
   }
   this.cookiesPurchased = function(){
     for (i = 0; i < hours.length; i++) {
-      this.hourlyPurchased[i] = Math.floor(this.randomCustomers() * this.avgCookies);
+      this.hourlyPurchased[i] = Math.floor(this.randomCustomers() * hoursScaling[i] * this.avgCookies);
     }
   }
   this.totalSales = function(){
