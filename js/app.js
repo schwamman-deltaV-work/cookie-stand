@@ -46,6 +46,9 @@ function generateTableHeader() {
 //Fills in table with sales data for each individual location
 function generateTable(location, id) {
   var tableRowLocation = document.getElementById(id);
+  var locationName = document.createElement("td");
+  locationName.textContent = location.name;
+  tableRowLocation.appendChild(locationName);
   for (var i = 0; i < hours.length; i++) {
     var salesElement = document.createElement("td");
     var numPurchased = location.hourlyPurchased[i];
@@ -88,7 +91,7 @@ function generateTableFooter() {
 //Creates constructor objects for each location
 var firstAndPike = new Location('1st and Pike', 23, 65, 6.3);
 var seaTacAirport = new Location('SeaTac Airport', 3, 24, 1.2);
-var seattleCenter = new Location('Seattle Centrer', 11, 38, 3.7);
+var seattleCenter = new Location('Seattle Center', 11, 38, 3.7);
 var capitolHill = new Location('Capitol Hill', 20, 38, 2.3);
 var alki = new Location('Alki', 2, 16, 4.6);
 
