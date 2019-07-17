@@ -87,7 +87,22 @@ function generateTableFooter() {
   tableRowLocation.appendChild(totalSalesElement); 
 }
 
+//Event Function to Create New Object
+function createNewObject(event) {
+  event.preventDefault();
+
+  var elName = document.getElementById("locationName");
+  var elMin = document.getElementById("minCustomers");
+  var elMax = document.getElementById("maxCustomers");
+  var elCookies = document.getElementById("cookiesPurchased");
+
+
+
+}
+
 //Executables ================================================================================================================
+document.getElementById("submit").addEventListener("click", createNewObject);
+
 //Creates constructor objects for each location
 var firstAndPike = new Location('1st and Pike', 23, 65, 6.3);
 var seaTacAirport = new Location('SeaTac Airport', 3, 24, 1.2);

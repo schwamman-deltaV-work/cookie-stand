@@ -10,20 +10,40 @@
     <nav>
       <h1>Stores Data</h1>
       <ul>
-          <li>
-            <a href="hours.html"><p>Hours</p></a>
-          </li>
-          <li>
-            <a href="location.html"><p>Location</p></a>
-          </li>
-          <li>
-            <a href="index.html"><p>Home</p></a>
-          </li>
-        </ul>
+        <li>
+          <a href="hours.html"><p>Hours</p></a>
+        </li>
+        <li>
+          <a href="location.html"><p>Location</p></a>
+        </li>
+        <li>
+          <a href="index.html"><p>Home</p></a>
+        </li>
+      </ul>
     </nav>
     <form>
       <fieldset>
-        <p>Hi</p>
+        <label id = "locationName">
+          <p>Location Name:</p>
+          <input type="text" name="locationName"/>
+        </label>
+        <label id = "minCustomers">
+          <p>Minimum Customers:</p>
+          <input type="number" name="minCustomers" min="0" max="50" step="1"/>
+        </label>
+        <label id = "maxCustomers">
+          <p>Maximum Customers:</p>
+          <input type="number" name="maxCustomers" min="0" max="100" step="1"/>
+        </label>
+        <label id = "cookiesPurchased">
+            <p>Average Cookies Purchased Per Customer:</p>
+            <input type="number" name="cookiesPurchased" min="0" max="10" step=".1"/>
+        </label>
+        <div>
+          <label id = "submit">
+            <input type="submit" value = "submit"/>
+          </label>
+        </div>
       </fieldset>
     </form>
     <div id="table">
