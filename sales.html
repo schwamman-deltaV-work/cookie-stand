@@ -23,44 +23,53 @@
     </nav>
     <form id="locationForm">
       <fieldset>
-        <label for="locationName">
-          <p>Location Name:</p>
-          <input type="text" name="locationName" id="locationName" />
-        </label>
-        <label for="minCustomers">
-          <p>Minimum Customers:</p>
-          <input
-            type="number"
-            name="minCustomers"
-            id="minCustomers"
-            min="0"
-            max="50"
-            step="1"
-          />
-        </label>
-        <label for="maxCustomers">
-          <p>Maximum Customers:</p>
-          <input
-            type="number"
-            name="maxCustomers"
-            id="maxCustomers"
-            min="0"
-            max="100"
-            step="1"
-          />
-        </label>
-        <label for="cookiesPurchased">
-          <p>Average Cookies Purchased Per Customer:</p>
-          <input
-            type="number"
-            name="cookiesPurchased"
-            id="cookiesPurchased"
-            min="0"
-            max="10"
-            step=".1"
-          />
-        </label>
-        <div>
+        <h2>Add New Location Data</h2>
+        <div id="input1">
+          <label for="locationName">
+            <p>Location Name:</p>
+            <input type="text" name="locationName" id="locationName" />
+          </label>
+        </div>
+        <div id="input2">
+          <label for="minCustomers">
+            <p>Minimum Customers:</p>
+            <input
+              type="number"
+              name="minCustomers"
+              id="minCustomers"
+              min="0"
+              max="50"
+              step="1"
+            />
+          </label>
+        </div>
+        <div id="input3">
+          <label for="maxCustomers">
+            <p>Maximum Customers:</p>
+            <input
+              type="number"
+              name="maxCustomers"
+              id="maxCustomers"
+              min="0"
+              max="100"
+              step="1"
+            />
+          </label>
+        </div>
+        <div id="input4">
+          <label for="cookiesPurchased">
+            <p>Average Cookies Purchased Per Customer:</p>
+            <input
+              type="number"
+              name="cookiesPurchased"
+              id="cookiesPurchased"
+              min="0"
+              max="10"
+              step=".1"
+            />
+          </label>
+        </div>
+        <div id = "submitForm">
           <label for="submit">
             <input type="submit" value="submit" />
           </label>
@@ -70,10 +79,9 @@
     <div id="table">
       <table>
         <thead id="tableHeader"></thead>
-        <tbody id = "tableBody">
-        </tbody>
-        <tfoot id = "tfoot">
-          <tr id = "footer"></tr>
+        <tbody id="tableBody"></tbody>
+        <tfoot id="tfoot">
+          <tr id="footer"></tr>
         </tfoot>
       </table>
     </div>

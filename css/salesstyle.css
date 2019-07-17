@@ -3,8 +3,9 @@ form {
     margin-left: 25px;
 }
 
+
 table {
-    margin-top: 150px;
+    margin-top: 50px;
     font-family: Arial, Helvetica, sans-serif;
     color: #e2dccd;
     margin-left: 25px;
@@ -49,6 +50,7 @@ td {
     text-align: center;
     padding-top: 10px;
     padding-bottom: 5px;
+    vertical-align: middle;
 }
 
 td:first-child {
@@ -70,6 +72,46 @@ td:last-child {
 tr:last-child {
     font-weight: bold;
 }
+
+label {
+    font-weight: bold;
+}
+
+fieldset {
+    background-color: #987645;
+    width: 300px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 25px;
+}
+
+fieldset h2 {
+    font-size: 1.4em;
+    font-weight: bolder;
+}
+
+fieldset div {
+    margin: 15px;
+}
+
+label p {
+    margin-bottom: 10px;
+}
+
+label input {
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#footer {
+    background-color: #4e493d;
+    border-top: 3px solid #e2dccd;
+}
+
+#submitForm {
+    margin-top: 15px;
+}
+
+
 
 
 
