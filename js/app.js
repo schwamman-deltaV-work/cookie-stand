@@ -2,6 +2,8 @@
 //Data =========================================================================================================================
 var hours = ["6:00 am", "7:00 am", "8:00 am", "9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm", "6:00 pm", "7:00 pm", "8:00 pm"];
 var hoursScaling = [0.5, 0.75, 1.0, 0.6, 0.8, 1.0, 0.7, 0.4, 0.6, 0.9, 0.7, 0.5, 0.3, 0.4, 0.6];
+var allSales = 0;
+var hourlyTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 //Functionality =================================================================================================================
 //Constructor for store sales data
@@ -13,7 +15,7 @@ function Location (name, minCustomers, maxCustomers, avgCookies) {
   this.hourlyPurchased = [];
   this.dailyTotal = 0;
   this.randomCustomers = function() {
-    var numCustomers = Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) +this.minCustomers;
+    var numCustomers = Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers;
     return numCustomers;
   }
   this.cookiesPurchased = function(){
@@ -24,7 +26,8 @@ function Location (name, minCustomers, maxCustomers, avgCookies) {
   this.totalSales = function(){
     for (i = 0; i < hours.length; i++) {
     this.dailyTotal += this.hourlyPurchased[i];
-  }
+    }
+    allSales += this.dailyTotal;
   }
 }
 
@@ -44,12 +47,17 @@ function generateTableHeader() {
 }
 
 //Fills in table with sales data for each individual location
-function generateTable(location, id) {
-  var tableRowLocation = document.getElementById(id);
+function generateTable(location) {
+  var tableBodyLocation = document.getElementById("tableBody");
+  var newRow = document.createElement("tr");
+  newRow.setAttribute("id", location.name);
+  tableBodyLocation.appendChild(newRow);
+  var tableRowLocation = document.getElementById(location.name);
   var locationName = document.createElement("td");
   locationName.textContent = location.name;
   tableRowLocation.appendChild(locationName);
   for (var i = 0; i < hours.length; i++) {
+    hourlyTotal[i] += location.hourlyPurchased[i];
     var salesElement = document.createElement("td");
     var numPurchased = location.hourlyPurchased[i];
     salesElement.textContent = numPurchased;
@@ -61,47 +69,67 @@ function generateTable(location, id) {
 }
 
 //Calculates hourly totals from all locations
-function generateHourlyTotals() {
-  var total = [];
-  for (i = 0; i < hours.length; i++) {
-    total[i] = firstAndPike.hourlyPurchased[i] + seaTacAirport.hourlyPurchased[i] + seattleCenter.hourlyPurchased[i] + capitolHill.hourlyPurchased[i] + alki.hourlyPurchased[i];
-  }
-  return total;
-}
+// function generateHourlyTotals() {
+//   var total = [];
+//   for (i = 0; i < hours.length; i++) {
+//     total[i] = firstAndPike.hourlyPurchased[i] + seaTacAirport.hourlyPurchased[i] + seattleCenter.hourlyPurchased[i] + capitolHill.hourlyPurchased[i] + alki.hourlyPurchased[i];
+//   }
+//   return total;
+// }
 
 //Generates the hourly totals footer for list
 function generateTableFooter() {
-  var tableRowLocation = document.getElementById("totals");
+  var tableRowLocation = document.getElementById("footer");
   var totalHeader = document.createElement("td");
   totalHeader.textContent = "Hourly Total";
   tableRowLocation.appendChild(totalHeader);
   for (var i = 0; i < hours.length; i++) {
     var hourlyElement = document.createElement("td");
-    var hourlyTotal = generateHourlyTotals()[i];
-    hourlyElement.textContent = hourlyTotal;
+    hourlyElement.textContent = hourlyTotal[i];
     tableRowLocation.appendChild(hourlyElement);
   }
   var totalSalesElement = document.createElement("td");
-  var allSales = firstAndPike.dailyTotal + seaTacAirport.dailyTotal + seattleCenter.dailyTotal + capitolHill.dailyTotal + alki.dailyTotal;
   totalSalesElement.textContent = allSales;
   tableRowLocation.appendChild(totalSalesElement); 
+}
+
+//Function to Clear Footer as Additional Locations are Added
+function clearFooter() {
+  var footerLocation = document.getElementById("footer");
+  footerLocation.innerHTML = "";
 }
 
 //Event Function to Create New Object
 function createNewObject(event) {
   event.preventDefault();
 
-  var elName = document.getElementById("locationName");
-  var elMin = document.getElementById("minCustomers");
-  var elMax = document.getElementById("maxCustomers");
-  var elCookies = document.getElementById("cookiesPurchased");
+  var elName = event.target.locationName.value;
+  var elMin = parseInt(event.target.minCustomers.value);
+  var elMax = parseInt(event.target.maxCustomers.value);
+  var elCookies = parseFloat(event.target.cookiesPurchased.value);
 
+  var elName = new Location(elName, elMin, elMax, elCookies);
+  
+  elName.cookiesPurchased();
+  elName.totalSales();
+  // console.table(newLocation)
+  // var tableBodyLocation = document.getElementById("tableBody");
+  // var newRow = document.createElement("tr");
+  // newRow.setAttribute("id", elName);
+  // tableBodyLocation.appendChild(newRow);
 
+  generateTable(elName);
 
+  clearFooter();
+
+  generateTableFooter();
+
+  
 }
 
 //Executables ================================================================================================================
-document.getElementById("submit").addEventListener("click", createNewObject);
+//Event listener for submitting form
+document.getElementById("locationForm").addEventListener("submit", createNewObject);
 
 //Creates constructor objects for each location
 var firstAndPike = new Location('1st and Pike', 23, 65, 6.3);
@@ -126,7 +154,7 @@ alki.totalSales();
 
 
 generateTableHeader();
-generateTableFooter();
+
 
 //Generates List on sales.html
 generateTable(firstAndPike, "firstAndPike");
@@ -134,3 +162,5 @@ generateTable(seaTacAirport, "seaTac");
 generateTable(seattleCenter, "seattle");
 generateTable(capitolHill, "capitol");
 generateTable(alki, "alki");
+
+generateTableFooter();
