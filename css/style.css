@@ -30,6 +30,10 @@ nav ul li a{
     font-family: "Lost Fish";
 }
 
+nav ul li a:hover {
+    color: #d0c7ae;
+}
+
 body {
     background-color: #acaba8;
     height: 5000px;
