@@ -68,14 +68,6 @@ function generateTable(location) {
   tableRowLocation.appendChild(totalElement);
 }
 
-//Calculates hourly totals from all locations
-// function generateHourlyTotals() {
-//   var total = [];
-//   for (i = 0; i < hours.length; i++) {
-//     total[i] = firstAndPike.hourlyPurchased[i] + seaTacAirport.hourlyPurchased[i] + seattleCenter.hourlyPurchased[i] + capitolHill.hourlyPurchased[i] + alki.hourlyPurchased[i];
-//   }
-//   return total;
-// }
 
 //Generates the hourly totals footer for list
 function generateTableFooter() {
@@ -112,16 +104,12 @@ function createNewObject(event) {
   
   elName.cookiesPurchased();
   elName.totalSales();
-  // console.table(newLocation)
-  // var tableBodyLocation = document.getElementById("tableBody");
-  // var newRow = document.createElement("tr");
-  // newRow.setAttribute("id", elName);
-  // tableBodyLocation.appendChild(newRow);
-
+  
+//Creates additional table row for new location  
   generateTable(elName);
-
+//Clears footer with old total values
   clearFooter();
-
+//Generates new footer with totals including new locations
   generateTableFooter();
 
   
